@@ -2,7 +2,7 @@ import colors from './colors';
 
 const palette = {
   background: {
-    default: colors.white,
+    default: colors.lightGray,
     paper: colors.white,
   },
   primary: {

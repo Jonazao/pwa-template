@@ -12,7 +12,7 @@ let theme = createTheme({
   shape,
 });
 
-//Theme composition when there is a necessity of providing additional properties based on theme variables
+// Theme composition when there is a necessity of providing additional properties based on theme variables
 theme = createTheme(theme, {
   components: components(theme),
 });

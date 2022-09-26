@@ -1,11 +1,3 @@
-const MuiTypography = (theme) => ({
-  styleOverrides: {
-    root: {
-      [theme.breakpoints.down('md')]: {
-        marginBottom: '20px',
-      },
-    },
-  },
-});
+const typography = {};
 
-export default MuiTypography;
+export default typography;

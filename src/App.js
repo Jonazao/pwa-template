@@ -1,20 +1,30 @@
-import logo from './assets/logos/logo.svg';
-import './App.css';
-import useAddToHomeScreenPrompt from './hooks/useAddToHomeScreenPrompt';
+// Library Dependencies
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+// Material UI Dependencies
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+// Internal Dependencies
+import { store } from './config/configureStore';
+import Routing from './Routing';
+import theme from './theme';
 
 function App() {
-  const { isReady, promptToInstall, hasFinishedInstallation } = useAddToHomeScreenPrompt();
-  console.log(isReady, hasFinishedInstallation);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>💛 Muy Deli</h1>
-        <p>Instala esta aplicación en tu dispositivo</p>
-        <p>{isReady && !hasFinishedInstallation && <button onClick={() => promptToInstall()}>Instalar</button>}</p>
-        <p>{hasFinishedInstallation ? 'Estás usando la Web App' : 'Aplicación todavía no instalada'}</p>
-      </header>
-    </div>
+    <Provider store={store}>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Router>
+          <CssBaseline />
+          <ThemeProvider theme={theme}>
+            <Routing />
+          </ThemeProvider>
+        </Router>
+      </LocalizationProvider>
+    </Provider>
   );
 }
 
