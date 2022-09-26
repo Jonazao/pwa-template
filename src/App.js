@@ -13,6 +13,9 @@ import { store } from './config/configureStore';
 import Routing from './Routing';
 import theme from './theme';
 
+import TopBarApp from './components/layout/TopBarApp';
+import BottomBarApp from './components/layout/BottomBarApp';
+
 function App() {
   return (
     <Provider store={store}>
@@ -20,7 +23,9 @@ function App() {
         <Router>
           <CssBaseline />
           <ThemeProvider theme={theme}>
+            <TopBarApp />
             <Routing />
+            <BottomBarApp />
           </ThemeProvider>
         </Router>
       </LocalizationProvider>
