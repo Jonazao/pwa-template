@@ -7,12 +7,15 @@ import menuItems from './navigationConfig';
 
 export default function BottomBarApp() {
   const location = useLocation();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(false);
 
   React.useEffect(() => {
-    const selectedItem = menuItems.find((item) => location.pathname.includes(item.url));
+    const pathSegmenets = location.pathname.split('/').filter((v) => v !== '');
+    const selectedItem = menuItems.find((item) => pathSegmenets.some((path) => item.url.includes(`/${path}`)));
     if (selectedItem) {
       setValue(selectedItem.value);
+    } else {
+      setValue(false);
     }
   }, [value, location]);
 
