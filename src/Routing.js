@@ -1,21 +1,66 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useAuthServer } from './config/configureTemplate';
+import ProtectedRoute from './hocs/ProtectedRoute';
 
-import './App.css';
-import logo from './assets/logos/logo.svg';
-
-import useAddToHomeScreenPrompt from './hooks/useAddToHomeScreenPrompt';
+import TopBarApp from './components/layout/TopBarApp';
+import BottomBarApp from './components/layout/BottomBarApp';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import {
+  HOME_URL,
+  LOGIN_URL,
+  NAVIGATION_ITEM_ONE_URL,
+  NAVIGATION_ITEM_TWO_URL,
+  NAVIGATION_ITEM_THREE_URL,
+  NAVIGATION_ITEM_FOUR_URL,
+  NAVIGATION_ITEM_FIVE_URL,
+} from './config/configureRoutes';
 
 export default function Routing() {
-  const { isReady, promptToInstall, hasFinishedInstallation } = useAddToHomeScreenPrompt();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>💛 Muy Deli</h1>
-        <p>Instala esta aplicación en tu dispositivo</p>
-        <p>{isReady && !hasFinishedInstallation && <button onClick={() => promptToInstall()}>Instalar</button>}</p>
-        <p>{hasFinishedInstallation ? 'Estás usando la Web App' : 'Aplicación todavía no instalada'}</p>
-      </header>
-    </div>
+    <>
+      <Routes>
+        {useAuthServer ? <Route path={LOGIN_URL} element={<Login />} /> : null}
+        <Route
+          path="*"
+          element={
+            <ProtectedRoute>
+              <TopBarApp />
+              <Routes>
+                <Route path={HOME_URL} element={<Home />} />
+                <Route path={NAVIGATION_ITEM_ONE_URL} element={<Home />} />
+                <Route path={NAVIGATION_ITEM_TWO_URL} element={<Home />} />
+                <Route path={NAVIGATION_ITEM_THREE_URL} element={<Home />} />
+                <Route path={NAVIGATION_ITEM_FOUR_URL} element={<Home />} />
+                <Route path={NAVIGATION_ITEM_FIVE_URL} element={<Home />} />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+              <BottomBarApp />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
   );
 }
+
+// <RequireAuth>
+//             <TopBarApp />
+//             <Routes>
+//               <Route path={HOME_URL} element={<Home />} />
+//               <Route
+//                 path={[
+//                   NAVIGATION_ITEM_ONE_URL,
+//                   NAVIGATION_ITEM_TWO_URL,
+//                   NAVIGATION_ITEM_THREE_URL,
+//                   NAVIGATION_ITEM_FOUR_URL,
+//                   NAVIGATION_ITEM_FIVE_URL,
+//                 ]}
+//                 element={<Home />}
+//               />
+//             </Routes>
+//             <BottomBarApp />
+//           </RequireAuth>
+//         }
