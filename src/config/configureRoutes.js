@@ -1,5 +1,6 @@
 //Main Routes
 export const HOME_URL = '/';
+export const LOGIN_URL = '/login';
 
 //Navigation Routes
 export const NAVIGATION_ITEM_ONE_URL = '/item1';
