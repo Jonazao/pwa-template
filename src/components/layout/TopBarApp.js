@@ -15,8 +15,8 @@ export default function TopBarApp() {
   const location = useLocation();
   const [value, setValue] = React.useState(false);
   React.useEffect(() => {
-    const pathSegmenets = location.pathname.split('/').filter((v) => v !== '');
-    const selectedItem = menuItems.find((item) => pathSegmenets.some((path) => item.url.includes(`/${path}`)));
+    const pathSegments = location.pathname.split('/').filter((v) => v !== '');
+    const selectedItem = menuItems.find((item) => pathSegments.some((path) => item.url.includes(`/${path}`)));
     if (selectedItem) {
       setValue(selectedItem.value);
     } else {
