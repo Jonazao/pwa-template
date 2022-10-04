@@ -15,7 +15,6 @@ const ProtectedRouteWrap = ({ children }) => {
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
-
   if (!isAuthenticated) {
     return <Navigate to={LOGIN_URL} replace state={{ from: location }} />;
   }

@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import menuItems from './navigationConfig';
+import UserAvatarMenu from '../commons/UserAvatarMenu';
 
 export default function TopBarApp() {
   const theme = useTheme();
@@ -60,6 +61,7 @@ export default function TopBarApp() {
             })}
           </Tabs>
         )}
+        <UserAvatarMenu fullname="Jhonnatan Guerrero" />
       </Toolbar>
     );
   };
