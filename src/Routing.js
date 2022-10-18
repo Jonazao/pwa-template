@@ -7,10 +7,12 @@ import TopBarApp from './components/layout/TopBarApp';
 import BottomBarApp from './components/layout/BottomBarApp';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import PostExample from './pages/PostExample';
 import PageNotFound from './pages/PageNotFound';
 import {
   HOME_URL,
   LOGIN_URL,
+  RTKQ_EXAMPLE_URL,
   NAVIGATION_ITEM_ONE_URL,
   NAVIGATION_ITEM_TWO_URL,
   NAVIGATION_ITEM_THREE_URL,
@@ -30,6 +32,7 @@ export default function Routing() {
               <TopBarApp />
               <Routes>
                 <Route path={HOME_URL} element={<Home />} />
+                <Route path={RTKQ_EXAMPLE_URL} element={<PostExample />} />
                 <Route path={NAVIGATION_ITEM_ONE_URL} element={<Home />} />
                 <Route path={NAVIGATION_ITEM_TWO_URL} element={<Home />} />
                 <Route path={NAVIGATION_ITEM_THREE_URL} element={<Home />} />
