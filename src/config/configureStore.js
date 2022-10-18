@@ -5,7 +5,7 @@ import { useAuthServer } from '../config/configureTemplate';
 import authReducer from '../features/auth/authSlice';
 
 //Services
-import { postApi } from '../services/auth';
+import { postApi } from '../services/post';
 
 const auth = useAuthServer ? authReducer : null;
 

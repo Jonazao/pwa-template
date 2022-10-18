@@ -1,8 +1,9 @@
 import React from 'react';
-import { useGetPostsQuery } from '../services/auth';
+import { useGetPostsQuery } from '../services/post';
 
 export default function PostExample() {
   const postResponse = useGetPostsQuery();
+  console.log(postResponse);
   return (
     <div>
       <h1>Post React Tool Kit Query</h1>
