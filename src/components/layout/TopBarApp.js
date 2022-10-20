@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,22 +11,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import menuItems from './navigationConfig';
 import UserAvatarMenu from '../commons/UserAvatarMenu';
+import useMenuNavigation from '../../hooks/useMenuNavigation';
 
 export default function TopBarApp() {
   const theme = useTheme();
-  const location = useLocation();
-  const [value, setValue] = React.useState(false);
-  React.useEffect(() => {
-    const pathSegments = location.pathname.split('/').filter((v) => v !== '');
-    const selectedItem = menuItems.find((item) => pathSegments.some((path) => item.url.includes(`/${path}`)));
-    if (selectedItem) {
-      setValue(selectedItem.value);
-    } else {
-      setValue(false);
-    }
-  }, [value, location]);
+  const { navigationItem, setNavigationItem } = useMenuNavigation();
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setNavigationItem(newValue);
   };
   const isMediumOrUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const TopBarToolbar = () => {
@@ -40,7 +31,7 @@ export default function TopBarApp() {
             sx={{ color: theme.palette.primary.contrastText }}
             textColor="inherit"
             TabIndicatorProps={{ sx: { background: theme.palette.primary.contrastText } }}
-            value={value}
+            value={navigationItem}
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="auto"
