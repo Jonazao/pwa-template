@@ -48,22 +48,3 @@ export default function Routing() {
     </>
   );
 }
-
-// <RequireAuth>
-//             <TopBarApp />
-//             <Routes>
-//               <Route path={HOME_URL} element={<Home />} />
-//               <Route
-//                 path={[
-//                   NAVIGATION_ITEM_ONE_URL,
-//                   NAVIGATION_ITEM_TWO_URL,
-//                   NAVIGATION_ITEM_THREE_URL,
-//                   NAVIGATION_ITEM_FOUR_URL,
-//                   NAVIGATION_ITEM_FIVE_URL,
-//                 ]}
-//                 element={<Home />}
-//               />
-//             </Routes>
-//             <BottomBarApp />
-//           </RequireAuth>
-//         }
